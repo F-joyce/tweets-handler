@@ -5,7 +5,7 @@ client = MongoClient("mongodb://127.0.0.1:27017/?serverSelectionTimeoutMS=5000&c
 
 col = client['tweets1']['covid']
 
-col.create_index("id", unique=True)
+# col.create_index("id", unique=True)
 
 df = pd.read_pickle("./df_connect.pkl")
 

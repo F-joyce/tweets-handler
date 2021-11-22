@@ -18,7 +18,9 @@ import datetime
 
 now = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
 
-ten_ago = (datetime.datetime.utcnow() - datetime.timedelta(minutes = 2)).strftime('%Y-%m-%d %H:%M:%S')
+_ago = (datetime.datetime.utcnow() - datetime.timedelta(minutes = 22)).strftime('%Y-%m-%d %H:%M:%S')
+
+_toago = (datetime.datetime.utcnow() - datetime.timedelta(minutes = 20)).strftime('%Y-%m-%d %H:%M:%S')
 
 def search(since = None, until = None):
     c = twint.Config()
@@ -26,17 +28,22 @@ def search(since = None, until = None):
     c.Search = 'covid'
     c.Since = since
     c.Until = until
+   
 
     twint.run.Search(c)
     
     Tweets_df = twint.storage.panda.Tweets_df
 
-    df_clean = Tweets_df[['id', 'tweet', 'date']].copy()
+    df_clean = Tweets_df[Tweets_df['language']=='en'].copy()
+    
+    df_clean = df_clean[['id', 'tweet', 'date', 'nlikes', 'nreplies', 'nretweets', 'hour', 'geo', 'day']].copy()
+
+    df_clean.rename(columns={'id':'_id'}, inplace=True)
 
     df_clean.to_pickle("./df_clean.pkl")
     
 
 if __name__ == "__main__":
-    search(ten_ago, now)
+    search(_ago, _toago)
 
     

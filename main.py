@@ -17,7 +17,7 @@ def main():
 sched = BlockingScheduler()
 
 # Schedule job_function to be called every two hours
-sched.add_job(main, 'interval', minutes=2)
+sched.add_job(main, 'interval', minutes=10)
 
 sched.start()
 
