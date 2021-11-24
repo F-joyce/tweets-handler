@@ -1,7 +1,6 @@
 import pandas as pd
-import user_fll
 
-df = pd.read_pickle("./df_clean.pkl")
+df = pd.read_pickle("./df_followers.pkl")
 
 
 def analyze(tweet):
@@ -12,7 +11,6 @@ def analyze(tweet):
 
 
 def main():
-    df['n_followers'] = df['username'].apply(user_fll.get_number_followers)
 
     df['connection'] = df['tweet'].apply(analyze)
 
