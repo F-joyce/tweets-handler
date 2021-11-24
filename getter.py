@@ -1,6 +1,6 @@
 import twint
 import datetime
-
+import main
         # For customizing, these are all the columns of the twint original dataframe
         # ['id', 'conversation_id', 'created_at', 'date', 'timezone', 'place',
         # 'tweet', 'language', 'hashtags', 'cashtags', 'user_id', 'user_id_str',
@@ -18,9 +18,9 @@ import datetime
 
 now = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
 
-_ago = (datetime.datetime.utcnow() - datetime.timedelta(minutes = 22)).strftime('%Y-%m-%d %H:%M:%S')
+_ago = (datetime.datetime.utcnow() - datetime.timedelta(minutes = main.SINCE, weeks = 1)).strftime('%Y-%m-%d %H:%M:%S')
 
-_toago = (datetime.datetime.utcnow() - datetime.timedelta(minutes = 20)).strftime('%Y-%m-%d %H:%M:%S')
+_toago = (datetime.datetime.utcnow() - datetime.timedelta(minutes = main.UNTIL, weeks = 1)).strftime('%Y-%m-%d %H:%M:%S')
 
 def search(since = None, until = None):
     c = twint.Config()
@@ -36,14 +36,13 @@ def search(since = None, until = None):
 
     df_clean = Tweets_df[Tweets_df['language']=='en'].copy()
     
-    df_clean = df_clean[['id', 'tweet', 'date', 'nlikes', 'nreplies', 'nretweets', 'hour', 'geo', 'day']].copy()
+    df_clean = df_clean[['id', 'tweet', 'date', 'nlikes', 'nreplies', 'nretweets', 'hour', 'geo', 'day', 'link', 'user_id', 'username']].copy()
 
     df_clean.rename(columns={'id':'_id'}, inplace=True)
 
     df_clean.to_pickle("./df_clean.pkl")
     
+    # return Tweets_df TODO uncomment only for debug purposes on the dataframe
 
 if __name__ == "__main__":
-    search(_ago, _toago)
-
-    
+    search(_ago, _toago) 

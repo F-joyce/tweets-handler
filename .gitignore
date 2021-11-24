@@ -2,3 +2,8 @@ venv/
 *.pkl
 *.ipynb
 getter_trials.py
+ENV_VAR.py
+__pycache__/
+iter.py
+output.txt
+temp_usernames.json
