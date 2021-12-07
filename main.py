@@ -6,7 +6,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 # Add data parametere to pass to getter, so it gets the last 10 minutes of tweets
 
 # SINCE is the x minutes since result will be fetched UNTIL UNTIL
-SINCE = 30
+SINCE = 3000
 UNTIL = 0
 
 SCRIPT_LIST = ['getter.py', 'get_nfollowers.py', 'nfollowers_todataframe.py', 'analyzer.py', 'add_to_mongo.py']

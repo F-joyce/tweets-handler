@@ -8,7 +8,7 @@ col = client['tweets1']['covid']
 # TODO 
 # substitute date with DATE parameter shared
 
-date = (datetime.datetime.utcnow() - datetime.timedelta(hours = 24)).strftime('%Y-%m-%d %H:%M:%S')
+date = (datetime.datetime.utcnow() - datetime.timedelta(weeks = 5)).strftime('%Y-%m-%d %H:%M:%S')
 
 query_to_clear = { "date" : { "$lt" : date }}
 

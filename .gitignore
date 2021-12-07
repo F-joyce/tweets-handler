@@ -7,3 +7,9 @@ __pycache__/
 iter.py
 output.txt
 temp_usernames.json
+praw.ini
+Reddit_var.py
+Useful_snippets.py
+*.json
+to_implement.md
+
