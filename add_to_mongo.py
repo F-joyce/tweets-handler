@@ -7,7 +7,7 @@ col = client['tweets1']['covid']
 
 # col.create_index("id", unique=True)
 
-df = pd.read_pickle("./df_connect.pkl")
+df = pd.read_pickle("./df_norm.pkl")
 
 data = df.to_dict(orient='records')  # Here's our added param..
 

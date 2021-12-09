@@ -3,6 +3,10 @@ import requests.auth
 import Reddit_var as reddit_auth
 import pandas as pd
 import json
+import os
+from dotenv import load_dotenv
+
+
 
 LIMIT = str(50)
 

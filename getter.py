@@ -36,7 +36,7 @@ def search(since = None, until = None):
 
     df_clean = Tweets_df[Tweets_df['language']=='en'].copy()
     
-    df_clean = df_clean[['id', 'tweet', 'date', 'nlikes', 'nreplies', 'nretweets', 'hour', 'geo', 'day', 'link', 'user_id', 'username']].copy()
+    df_clean = df_clean[['id', 'tweet', 'date', 'nlikes', 'nreplies', 'nretweets', 'day', 'link', 'user_id', 'username']].copy()
 
     df_clean.rename(columns={'id':'_id'}, inplace=True)
 
