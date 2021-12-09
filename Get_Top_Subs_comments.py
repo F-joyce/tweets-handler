@@ -1,11 +1,14 @@
 import requests
 import requests.auth
-import Reddit_var as reddit_auth
 import pandas as pd
 import json
 import os
-from dotenv import load_dotenv
 
+R_client_id = os.getenv('R_client_id') 
+R_client_secret = os.getenv('R_client_secret') 
+R_username = os.getenv('R_username')
+R_password = os.getenv('R_password')
+R_user_agent = os.getenv('R_user_agent') 
 
 
 LIMIT = str(50)
@@ -15,13 +18,13 @@ def dump_in(namefile, data):
         json.dump(data, f, ensure_ascii=False, indent=4)
 
 def get_token():
-        auth = requests.auth.HTTPBasicAuth(reddit_auth.client_id, reddit_auth.client_secret)
+        auth = requests.auth.HTTPBasicAuth(R_client_id, R_client_secret)
 
         data = {'grant_type': 'password',
-                'username': reddit_auth.username,
-                'password': reddit_auth.password}
+                'username': R_username,
+                'password': R_password}
 
-        headers = {"User-Agent":reddit_auth.user_agent}
+        headers = {"User-Agent":R_user_agent}
 
         res = requests.post('https://www.reddit.com/api/v1/access_token',
         auth=auth, data=data, headers=headers)
@@ -37,9 +40,10 @@ if 'TOKEN' in globals():
         print('Token already fetched')
 else:
         TOKEN = get_token()
+        print(f"New token is {TOKEN}")
 
 headers = {"Authorization":f"bearer {TOKEN}",
-                "User-Agent":reddit_auth.user_agent}
+                "User-Agent":R_user_agent}
 
 headers_limit = headers.copy()
 headers_limit['limit'] = LIMIT

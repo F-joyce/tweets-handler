@@ -1,19 +1,15 @@
 import requests
 import json
-import ENV_VAR
 import pandas as pd
 from itertools import zip_longest
-from dotenv import load_dotenv
 import os
 
 '''Connects to the twitter API and gets the n_followers for each username of the tweets fetched, as
     this can't be done automatically through twint'''
 
-load_dotenv()
 
-bearer_token = ENV_VAR.B_TOKEN
 
-bearer_token = os.getenv('T-btoken')
+bearer_token = os.getenv('T_btoken')
 
 def grouper(iterable, n, fillvalue=None): # Groups long list in chunks of 99 manageable by Twitter API
     args = [iter(iterable)] * n
@@ -87,7 +83,7 @@ def main():
             json_response['data'].extend(to_add['data'])
 
 
-    with open('temp_usernames.json', 'w') as outfile:
+    with open('temp_usernames_trial.json', 'w') as outfile:
         json.dump(json_response, outfile)
 
 if __name__ == "__main__":
