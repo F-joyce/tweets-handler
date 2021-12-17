@@ -69,14 +69,21 @@ RATIO_RT = 19.307
 
 RATIO_LK = 1.610
 
+LOWER_B = 50
 
 def Normalize_likes(likes, followers):
     ratio = 1.610
+    lower_bound = 10
+    if followers < LOWER_B:
+        followers = lower_bound
     ratio_instance = likes/followers
     return round(ratio_instance/ratio,5)
 
 def Normalize_rtweets(rtweets, followers):
     ratio = 19.307
+    lower_bound = LOWER_B
+    if followers < lower_bound:
+        followers = lower_bound
     ratio_instance = rtweets/followers
     return round(ratio_instance/ratio, 5)
 

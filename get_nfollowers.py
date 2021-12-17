@@ -3,9 +3,12 @@ import json
 import pandas as pd
 from itertools import zip_longest
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 '''Connects to the twitter API and gets the n_followers for each username of the tweets fetched, as
-    this can't be done automatically through twint'''
+    this needs to be done at a later time than when tweets are collected'''
 
 
 
@@ -35,7 +38,6 @@ def create_url(user_names_list, user_fields):
     print(url)
     return url
 
-
 def bearer_oauth(r):
     """
     Method required by bearer token authentication.
@@ -43,7 +45,6 @@ def bearer_oauth(r):
     r.headers["Authorization"] = f"Bearer {bearer_token}"
     r.headers["User-Agent"] = "v2UserLookupPython"
     return r
-
 
 def connect_to_endpoint(url):
     response = requests.request("GET", url, auth=bearer_oauth,)

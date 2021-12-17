@@ -1,4 +1,3 @@
-from typing import NoReturn
 import pandas as pd
 from normalize_index import Normalize
 

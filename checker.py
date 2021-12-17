@@ -4,12 +4,14 @@ import pprint
 
 client = MongoClient("mongodb://127.0.0.1:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000")  # Remember your uri string
 
-db = client['tweets1']
+db = client['tweets']
 
-col = db['covid']
+col = db['trial']
 
 _ = 0
 
 for tweet in col.find(): 
-    print(str(_) + '\n' + tweet['tweet'] + '\n') 
+    print(str(_) + '\n' + tweet['data']['text'] + '\n') 
     _ += 1
+    if _ > 99:
+        break
